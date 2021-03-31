@@ -1,0 +1,104 @@
+	{% extends 'index.html' %}
+	{% load static %}
+	{% block body %}
+	<section id="advertisement">
+		<div class="container">
+			<img  src="{% static 'images/shop/advertisement.jpg' %}" alt="" />
+		</div>
+	</section>
+	
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						<div class="brands_products"><!--brands_products-->
+							<h2>Category</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									{% for i in Category %}
+									<li><a href="/shop/{{i.name}}/{{Br}}/">{{i.name}}</a></li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div><!--/brands_products-->
+						<div class="brands_products"><!--brands_products-->
+							<h2>Brand</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									{% for i in Brand %}
+									<li><a href="/shop/{{Cat}}/{{i.name}}/">{{i.name}}</a></li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div><!--/brands_products-->
+						
+						<div class="price-range"><!--price-range-->
+							<h2>Price Range</h2>
+							<div class="well">
+								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
+								 <b>$ 0</b> <b class="pull-right">$ 600</b>
+							</div>
+						</div><!--/price-range-->
+						
+						<div class="shipping text-center"><!--shipping-->
+							<img  src="{% static 'images/home/shipping.jpg' %}" alt="" />
+						</div><!--/shipping-->
+						
+					</div>
+				</div>
+				
+				<div class="col-sm-9 padding-right">
+					<div class="features_items"><!--features_items-->
+						<h2 class="title text-center">Features Items</h2>
+						{% for i in Product %}
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<img  src="{{i.img1.url}}" height="300px" alt="" />
+										<h2>{{i.finalPrice}}</h2>
+										<p>{{i.name}}</p>
+										{% if i.stock %}
+											<a href="/product/{{i.id}}/" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>add product</a>
+												{% else %}
+											<a href="/product/{{i.id}}/" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Out Of Stock</a>
+											{% endif %}
+
+									</div>
+									<div class="product-overlay">
+										<div class="overlay-content">
+											<h2>{{i.finalPrice}}</h2>
+											<p>{{i.name}}</p>
+											{% if i.stock %}
+											<a href="/product/{{i.id}}/" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>add product</a>
+												{% else %}
+											<a href="/product/{{i.id}}/" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Out Of Stock</a>
+											{% endif %}
+
+										</div>
+									</div>
+								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><a href="/wishlist/{{i.id}}"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+
+									</ul>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						</div>
+
+						<ul class="pagination">
+							<li class="active"><a href="">1</a></li>
+							<li><a href="">2</a></li>
+							<li><a href="">3</a></li>
+							<li><a href="">&raquo;</a></li>
+						</ul>
+					</div><!--features_items-->
+				</div>
+			</div>
+		</div>
+	</section>
+	{% endblock %}

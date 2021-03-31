@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+	{% load static %}
+	{% block body %}
+	<section id="cart_items">
+		<div class="container">
+
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Item</td>
+							<td class="description"></td>
+							<td class="price">Basic Price</td>
+							<td class="total">Final price</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+					    {% for i in Wish %}
+						<tr>
+							<td class="cart_product">
+								<a href=""><img src="{{i.product.img1.url}}" height="150px" width="100px" alt=""></a>
+							</td>
+							<td class="cart_description">
+								<h4><a href="">Rs{{i.product.name}}</a></h4>
+
+							</td>
+							<td class="cart_price">
+								<p>Rs{{i.product.basePrice}}</p>
+							</td>
+							<td class="cart_price">
+								<p>Rs{{i.product.finalPrice}}</p>
+							</td>
+							<td class="cart_delete">
+								{% if i.product.stock %}
+								<a class="cart_quantity_delete" href="/product/{{i.product.id}}/">Buy</a>
+								{% else %}
+									<a class="cart_quantity_delete" href="/product/{{i.product.id}}/" style="pointer-events none">Out Of Stock</a>
+								{% endif %}
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href="/deletewishlist/{{i.id}}/"><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+                         {% endfor %}
+
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+
+{% endblock %}

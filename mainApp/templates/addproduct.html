@@ -1,0 +1,94 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+
+<section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+
+				<div class="col-sm-4">
+					<div class="signup-form"><!--sign up form-->
+                        <h2>Add Product</h2>
+						<form method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							<label>Name</label>
+							<input type="text"  name="name" />
+							<label>Description</label>
+							<textarea name="description"></textarea>
+							<label>Base Price</label>
+                            <input type="number"  name="baseprice"/>
+							<label>Discount</label>
+                            <input type="number"  name="discount"/>
+							<label>Brand</label>
+							<select name="brand" class="form-select">
+								{% for i in Brand %}
+								<option value="{{i.name}}">{{i.name}}</option>
+								{% endfor %}
+							</select>
+							<label>Category</label>
+							<select name="category" class="form-select">
+								{% for i in Category %}
+								<option value="{{i.name}}">{{i.name}}</option>
+								{% endfor %}
+							</select>
+							<label>Stock</label>
+							<select name="stock" class="form-select">
+								<option value="1">False</option>
+								<option value="2">True</option>
+							</select>
+							<label>Red Color</label>
+							<select name="red" class="form-select">
+								<option value="1">False</option>
+								<option value="2">True</option>
+							</select>
+							<label>Green Color</label>
+							<select name="red" class="form-select">
+								<option value="1">False</option>
+								<option value="2">True</option>
+							</select>
+							<label>Black Color</label>
+							<select name="red" class="form-select">
+								<option value="1">False</option>
+								<option value="2">True</option>
+							</select>
+							<label>S</label>
+							<select name="s" class="form-select">
+								<option value="1">False</option>
+								<option value="2">True</option>
+							</select>
+							<label>M</label>
+							<select name="m" class="form-select">
+								<option value="1">False</option>
+								<option value="2">True</option>
+							</select>
+							<label>L</label>
+							<select name="l" class="form-select">
+								<option value="1">False</option>
+								<option value="2">True</option>
+							</select>
+							<label>XL</label>
+							<select name="xl" class="form-select">
+								<option value="1">False</option>
+								<option value="2">True</option>
+							</select>
+							<label>Image1</label>
+							<input type="file" name="img1">
+							<label>Image2</label>
+							<input type="file" name="img2">
+							<label>Image3</label>
+							<input type="file" name="img3">
+							<label>Image4</label>
+							<input type="file" name="img4">
+							<label>Image5</label>
+							<input type="file" name="img5">
+
+							<button type="submit" class="btn btn-default">Add Product</button>
+						</form>
+					</div><!--/sign up form-->
+				</div>
+			</div>
+		</div>
+	</section><!--/form-->
+
+{% endblock %}

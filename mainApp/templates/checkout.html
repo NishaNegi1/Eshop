@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+	{% load static %}
+	{% block body %}
+	<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Check out</li>
+				</ol>
+			</div><!--/breadcrums-->
+			<div class="shopper-informations">
+				<div class="row">
+					<div class="col-sm-5 clearfix">
+						<div class="bill-to">
+							<p>Bill To</p>
+							<div class="form-one">
+								<form method="post">
+									{% csrf_token %}
+									<label>Email</label>
+									<input type="text" value="{{user.email}}" name="email">
+									<label>Name</label>
+									<input type="text" value="{{user.name}}" name="name">
+									<label>Address 1</label>
+									<input type="text" value="{{user.address1}}" name="address1">
+									<label>Address 2</label>
+									<input type="text" value="{{user.address2}}" name="address2">
+									<label>ZIP/PIN</label>
+									<input type="text" value="{{user.pin}}" name="pin">
+									<label>City</label>
+									<input type="text" value="{{user.city}}" name="city">
+									<label>State</label>
+									<input type="text" value="{{user.state}}" name="state">
+									<label>Mobile Number</label>
+									<input type="text" value="{{user.phone}}" name="phone">
+									<div class="col-sm-12">
+						                 <div class="order-message">
+							             <p>Shipping Order</p>
+							<textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
+
+						            </div>
+					              </div>
+									<select class="form-control" name="option">
+										<option value="COD">COD</option>
+										<option value="PAYPAL">PAYPAL</option>
+									</select>
+									<button class="btn btn-info" type="submit">Place order</button>
+									</form>
+				                   </div>
+			                   </div>
+						</div>
+					</div>
+				</div>
+
+		</div>
+	</section> <!--/#cart_items-->
+
+{% endblock %}

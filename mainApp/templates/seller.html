@@ -1,0 +1,89 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+
+<section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+
+				<div class="col-sm-4">
+					<div class="signup-form"><!--sign up form-->
+						<p>This is seller site</p>
+                        <h2>{{User.name}}</h2>
+						<form method="post">
+							{% csrf_token %}
+							<label>Name</label>
+							<input type="text"  name="name" value="{{User.name}}"/>
+							<label>Email</label>
+							<input type="email" name="email" value="{{User.email}}"/>
+							<label>Phone Number</label>
+                            <input type="text"  name="phone" value="{{User.phone}}"/>
+							<label>Bank Name</label>
+                            <input type="text"  name="bank" value="{{User.bankName}}"/>
+							<label>IFSC Code</label>
+                            <input type="text"  name="ifsc" value="{{User.ifscCode}}"/>
+							<label>Account Number</label>
+                            <input type="text"  name="account" value="{{User.accountNumber}}"/>
+
+							<button type="submit" class="btn btn-default">Update</button>
+						</form>
+						<a class="btn btn-success" href="/addproduct">Add Product</a>
+					</div><!--/sign up form-->
+				</div>
+			</div>
+		</div>
+	</section><!--/form-->
+
+	<section id="cart_items">
+		<div class="container">
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Item</td>
+							<td class="description">Name</td>
+							<td class="price">Base Price</td>
+							<td class="quantity">Discount</td>
+							<td class="quantity">Final Price</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						{% for i in Product %}
+						<tr>
+							<td class="cart_product">
+								{% if i.img1 %}
+								<a href=""><img src="{{i.img1.url}}" width="125px" alt=""></a>
+								{% endif %}
+							</td>
+							<td class="cart_description">
+								<h4><a href="">Colorblock Scuba</a></h4>
+
+							</td>
+							<td class="cart_price">
+								<p>{{i.basePrice}}</p>
+							</td>
+
+							<td class="cart_price">
+								<p>{{i.discount}}%</p>
+							</td>
+
+							<td class="cart_total">
+								<p class="cart_total_price">{{i.finalPrice}}</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href="/editproduct/{{i.id}}">Edit</a>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href="/deleteproduct/{{i.id}}"><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+{% endblock %}
